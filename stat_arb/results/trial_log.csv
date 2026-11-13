@@ -1,0 +1,10 @@
+trial,formation_months,entry_z,dev_sharpe,dev_cagr,dev_max_dd,trades,dev_sharpe_fo,daily_sr,run_at,chosen,variant,best_of_9_on_dev
+1,6,1.5,-0.642,-0.0551,-0.591,685,-0.105,-0.04041653173334511,2026-11-12T19:26:05,False,long-short pairs (rebuild),False
+2,6,2.0,-0.459,-0.0301,-0.4251,541,0.039,-0.028897377609599723,2026-11-12T19:26:06,False,long-short pairs (rebuild),False
+3,6,2.5,-0.683,-0.0367,-0.4225,438,-0.207,-0.043019489908273645,2026-11-12T19:26:07,False,long-short pairs (rebuild),False
+4,12,1.5,0.068,0.0023,-0.2014,767,0.485,0.004299456102916148,2026-11-12T19:28:07,False,long-short pairs (rebuild),False
+5,12,2.0,0.251,0.0122,-0.1247,610,0.476,0.01579275277811781,2026-11-12T19:28:09,True,long-short pairs (rebuild),False
+6,12,2.5,-0.055,-0.0039,-0.139,495,0.214,-0.003462368702335614,2026-11-12T19:28:10,False,long-short pairs (rebuild),False
+7,12,2.0,0.453,0.0765,-0.542,1269,,0.028512492356689602,2026-11-12T21:44:37,False,long-only A: pair switching,True
+8,12,2.0,0.102,0.0041,-0.1678,610,,0.006399578484464684,2026-11-12T21:44:37,False,long-only B: cheap leg + Nifty futures hedge,False
+9,12,2.0,0.322,0.0227,-0.2391,610,,0.020277926102048833,2026-11-12T21:44:37,False,long-only B-unhedged,False
