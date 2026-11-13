@@ -1,0 +1,39 @@
+trial,phase,name,description,registered
+1,1,put_spread,sell put 0.95 S0 / buy put 0.90 S0; max loss 10% of capital,2026-11-09
+2,1,iron_condor,put spread + sell call 1.05 S0 / buy call 1.10 S0; max loss 10% of capital,2026-11-09
+3,1,strangle,sell put 0.95 S0 and call 1.05 S0; 1x notional each,2026-11-09
+4,2,d20_h1,short put |delta| 0.20; long put |delta| 0.05; max loss 10% of capital,2026-11-10
+5,2,d20_h2,short put |delta| 0.20; long put at strike <= short - 5% S0; max loss 10% of capital,2026-11-10
+6,2,d20_h3,short put |delta| 0.20 naked; units so a 25% fall loses 10% of capital,2026-11-10
+7,2,d15_h1,short put |delta| 0.15; long put |delta| 0.05; max loss 10% of capital,2026-11-10
+8,2,d15_h2,short put |delta| 0.15; long put at strike <= short - 5% S0; max loss 10% of capital,2026-11-10
+9,2,d15_h3,short put |delta| 0.15 naked; units so a 25% fall loses 10% of capital,2026-11-10
+10,3,e1,Phase 1 put spread (fallback rule) + stop: exit at next close when MTM loss >= 2x net credit,2026-11-10
+11,3,f1,Phase 1 put spread (fallback rule) traded only if ATM IV - trailing 21d RV > expanding median of earlier gaps,2026-11-10
+12,3,e1f1,e1 and f1 together,2026-11-10
+13,census,s1_short_put,sell 0.95 put; stress-sized (-25%),2026-11-10
+14,census,s2_short_call,sell 1.05 call; stress-sized (+20%),2026-11-10
+15,census,s3_short_straddle,sell ATM call + put; stress-sized (worse of -25%/+20%),2026-11-10
+16,census,s4_short_strangle,sell 0.95 put + 1.05 call; stress-sized (worse of -25%/+20%),2026-11-10
+17,census,s5_bear_call_spread,"sell 1.05 call, buy 1.10 call; max loss 10%",2026-11-10
+18,census,s6_iron_butterfly,"sell ATM call + put, buy 1.05 call + 0.95 put; max loss 10%",2026-11-10
+19,census,s7_cash_secured_put,sell 0.95 put; notional 1x capital,2026-11-10
+20,census,s8_put_ratio,"buy 1x 0.95 put, sell 2x 0.90 put; stress-sized (-25%)",2026-11-10
+21,census,s9_calendar,"sell ATM put near, buy same strike far; debit 10% of capital",2026-11-10
+22,census,s10_covered_call,long TRI 1x capital + sell 1.05 call,2026-11-10
+23,census,s11_collar,long TRI 1x capital + sell 1.05 call + buy 0.95 put,2026-11-10
+24,census,s12_delta_hedged_straddle,"sell ATM straddle 1x notional, daily delta hedge with near-month future",2026-11-10
+25,census,s1_short_put_e1,sell 0.95 put; stress-sized (-25%) + stop at 2x net credit (exit next close),2026-11-10
+26,census,s2_short_call_e1,sell 1.05 call; stress-sized (+20%) + stop at 2x net credit (exit next close),2026-11-10
+27,census,s3_short_straddle_e1,sell ATM call + put; stress-sized (worse of -25%/+20%) + stop at 2x net credit (exit next close),2026-11-10
+28,census,s4_short_strangle_e1,sell 0.95 put + 1.05 call; stress-sized (worse of -25%/+20%) + stop at 2x net credit (exit next close),2026-11-10
+29,census,s5_bear_call_spread_e1,"sell 1.05 call, buy 1.10 call; max loss 10% + stop at 2x net credit (exit next close)",2026-11-10
+30,census,s6_iron_butterfly_e1,"sell ATM call + put, buy 1.05 call + 0.95 put; max loss 10% + stop at 2x net credit (exit next close)",2026-11-10
+31,census,s7_cash_secured_put_e1,sell 0.95 put; notional 1x capital + stop at 2x net credit (exit next close),2026-11-10
+32,census,s8_put_ratio_e1,"buy 1x 0.95 put, sell 2x 0.90 put; stress-sized (-25%) + stop at 2x net credit (exit next close)",2026-11-10
+33,4,p1,"Phase 1 put spread (fallback); trade only if prem_ratio >= 0.12; held to expiry",2026-11-10
+34,4,p2,"Phase 1 put spread (fallback); exit at next close if NIFTY 50 closes below the short strike before expiry",2026-11-10
+35,4,p3,"p1 + p2 (primary hypothesis)",2026-11-10
+36,5,h1a,"P1 + buy the 0.85 put on the same expiry each traded month; hedge premium incl. slippage = 15% of P1 net credit; held to expiry",2026-11-10
+37,5,h1b,"e1f1 + the same 0.85 put hedge; the hedge stays open to expiry if the 2x-credit stop closes the spread",2026-11-10
+38,5,h2,"mirror: prem_ratio >= 0.12 sell the 0.95/0.90 put spread (P1); < 0.06 buy it with debit = 2% of capital; else cash; held to expiry",2026-11-10

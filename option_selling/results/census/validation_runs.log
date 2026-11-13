@@ -1,0 +1,28 @@
+run 1 at 2026-11-10 10:32:20, 69 cycles 2019-02-01 to 2024-10-31, shortlist s1_short_put_e1, s4_short_strangle_e1, s7_cash_secured_put_e1, s8_put_ratio, s8_put_ratio_e1, s11_collar
+| strategy                  | shortlisted   | option CAGR   |   option Sharpe | worst month   | CVaR99   | DSR   |
+|:--------------------------|:--------------|:--------------|----------------:|:--------------|:---------|:------|
+| s1_short_put              |               | 1.3%          |            0.33 | -8.9%         | -8.9%    | 3.3%  |
+| s1_short_put_e1           | yes           | 2.2%          |            1.02 | -1.3%         | -1.3%    | 16.7% |
+| s2_short_call             |               | -1.8%         |           -0.56 | -4.2%         | -4.2%    | 0.0%  |
+| s2_short_call_e1          |               | -1.8%         |           -0.66 | -3.9%         | -3.9%    | 0.0%  |
+| s3_short_straddle         |               | -0.7%         |           -0.11 | -9.0%         | -9.0%    | 0.0%  |
+| s3_short_straddle_e1      |               | 0.2%          |            0.06 | -4.1%         | -4.1%    | 0.1%  |
+| s4_short_strangle         |               | 0.1%          |            0.06 | -8.9%         | -8.9%    | 0.2%  |
+| s4_short_strangle_e1      | yes           | 1.0%          |            0.35 | -3.7%         | -3.7%    | 1.7%  |
+| s5_bear_call_spread       |               | -5.9%         |           -0.69 | -10.0%        | -10.0%   | 0.0%  |
+| s5_bear_call_spread_e1    |               | -4.5%         |           -0.68 | -10.0%        | -10.0%   | 0.0%  |
+| s6_iron_butterfly         |               | -14.5%        |           -0.49 | -10.3%        | -10.3%   | 0.0%  |
+| s6_iron_butterfly_e1      |               | -14.5%        |           -0.49 | -10.3%        | -10.3%   | 0.0%  |
+| s7_cash_secured_put       |               | 2.0%          |            0.3  | -17.0%        | -17.0%   | 3.0%  |
+| s7_cash_secured_put_e1    | yes           | 3.8%          |            1.11 | -2.5%         | -2.5%    | 28.9% |
+| s8_put_ratio              | yes           | -2.0%         |           -0.5  | -7.6%         | -7.6%    | 0.0%  |
+| s8_put_ratio_e1           | yes           | -2.1%         |           -0.5  | -7.6%         | -7.6%    | 0.0%  |
+| s9_calendar               |               | -26.1%        |           -0.85 | -27.1%        | -27.1%   | 0.0%  |
+| s10_covered_call          |               | 13.3%         |            0.89 | -22.0%        | -22.0%   | 22.3% |
+| s11_collar                | yes           | 10.8%         |            0.96 | -6.3%         | -6.3%    | 21.0% |
+| s12_delta_hedged_straddle |               | 1.6%          |            0.32 | -7.3%         | -7.3%    | 1.6%  |
+| ref_base                  |               | 4.0%          |            0.72 | -10.0%        | -10.0%   | 17.6% |
+| ref_iron_condor           |               | -2.4%         |           -0.18 | -10.1%        | -10.1%   | 0.0%  |
+| ref_strangle              |               | -0.3%         |            0.01 | -16.5%        | -16.5%   | 0.1%  |
+| ref_e1f1                  |               | 2.7%          |            1.1  | -4.1%         | -4.1%    | 37.3% |
+2026-11-10 12:03:05 bugfix recompute (June 2023 relabel), not a new run

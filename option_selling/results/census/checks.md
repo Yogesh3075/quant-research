@@ -1,0 +1,34 @@
+# Census checks
+
+- split: design 132 cycles; no holdout cycle, option or futures data after 2024-10-31; validation runs logged: 1.
+- s1_short_put: payoff by hand OK for 2 cycles; max margin 10.2% of capital; worst option loss before charges 14.11%
+- s1_short_put_e1: payoff by hand OK for 2 cycles; max margin 10.2% of capital; worst option loss before charges 6.24%
+- s2_short_call: payoff by hand OK for 2 cycles; max margin 16.0% of capital; worst option loss before charges 8.99%
+- s2_short_call_e1: payoff by hand OK for 2 cycles; max margin 16.0% of capital; worst option loss before charges 10.17%
+- s3_short_straddle: payoff by hand OK for 2 cycles; max margin 28.7% of capital; worst option loss before charges 14.37%
+- s3_short_straddle_e1: payoff by hand OK for 2 cycles; max margin 28.7% of capital; worst option loss before charges 16.85%
+- s4_short_strangle: payoff by hand OK for 2 cycles; max margin 30.8% of capital; worst option loss before charges 14.70%
+- s4_short_strangle_e1: payoff by hand OK for 2 cycles; max margin 30.8% of capital; worst option loss before charges 8.02%
+- s5_bear_call_spread: payoff by hand OK for 2 cycles; max margin 10.0% of capital; worst option loss before charges 10.00%
+- s5_bear_call_spread_e1: payoff by hand OK for 2 cycles; max margin 10.0% of capital; worst option loss before charges 10.89%
+- s6_iron_butterfly: payoff by hand OK for 2 cycles; max margin 10.0% of capital; worst option loss before charges 10.00%
+- s6_iron_butterfly_e1: payoff by hand OK for 2 cycles; max margin 10.0% of capital; worst option loss before charges 10.00%
+- s7_cash_secured_put: payoff by hand OK for 2 cycles; max margin 15.0% of capital; worst option loss before charges 25.15%
+- s7_cash_secured_put_e1: payoff by hand OK for 2 cycles; max margin 15.0% of capital; worst option loss before charges 11.13%
+- s8_put_ratio: payoff by hand OK for 2 cycles; max margin 20.0% of capital; worst option loss before charges 0.77%
+- s8_put_ratio_e1: payoff by hand OK for 2 cycles; max margin 20.0% of capital; worst option loss before charges 2.75%
+- s9_calendar: payoff by hand OK for 2 cycles; max margin 10.0% of capital; worst option loss before charges 49.27%
+- s10_covered_call: payoff by hand OK for 2 cycles; max margin 0.0% of capital; worst option loss before charges 11.67%
+- s11_collar: payoff by hand OK for 2 cycles; max margin 0.0% of capital; worst option loss before charges 14.98%
+- s12_delta_hedged_straddle: payoff by hand OK for 2 cycles; max margin 43.4% of capital; worst option loss before charges 24.11%
+- s12 hedge 2016-07-29: 18 daily deltas recomputed by hand (IV by bisection, Black-Scholes delta) match; futures P&L by hand Rs -14,242.39 = code Rs -14,242.39; each hedge uses that day's close only
+- ref_base: payoff by hand OK for 2 cycles; max margin 10.0% of capital; worst option loss before charges 10.00%
+- ref_iron_condor: payoff by hand OK for 2 cycles; max margin 10.0% of capital; worst option loss before charges 10.00%
+- ref_strangle: payoff by hand OK for 2 cycles; max margin 30.0% of capital; worst option loss before charges 22.92%
+- no look-ahead: legs, IV and sizing use the entry-day chain (chain() asserts date == entry) and the entry-day index close; hedge deltas use each day's own closes; settlement only for payoff.
+- credit_gross - slippage - payout - charges + index leg + futures hedge + interest = total_pnl: max gap Rs 0.000000 -> PASS
+- capital_end = capital_start + total_pnl: max gap Rs 0.000000 -> PASS
+- charge items sum to total_charges: max gap Rs 0.000000 -> PASS
+- capital_start = previous capital_end: max gap Rs 0.000000 -> PASS
+- base put spread (census engine) reproduces Phase 2 ref_put_spread_fallback on design: max capital gap Rs 0.0049
+- frozen e1f1 reproduces Phase 3 on design: max capital gap Rs 0.0000

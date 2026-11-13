@@ -1,0 +1,26 @@
+# Phase 5 checks
+
+- holdout not loaded: no option data after 2024-10-31.
+- ref_p1 reproduces the bugfix-recomputed Phase 4 p1 (design): max capital gap Rs 0.0000
+- ref_e1f1 reproduces the bugfix-recomputed Phase 4 ref_e1f1 (design): max capital gap Rs 0.0000
+- ref_base reproduces the bugfix-recomputed Phase 4 ref_base (design): max capital gap Rs 0.0000
+- h1a hedge 2008-10-31: put 2450 (target 2453) paid Rs 4,321.07 = 15% x spread net credit Rs 28,807.13: OK
+- h1a hedge 2012-02-24: put 4600 (target 4615) paid Rs 4,090.58 = 15% x spread net credit Rs 27,270.51: OK
+- h1a hedge 2008-08-29: put 3700 (target 3706) paid Rs 3,196.30 = 15% x spread net credit Rs 21,308.66: OK
+- h1b hedge 2008-05-30: put 4100 (target 4140) paid Rs 2,318.12 = 15% x spread net credit Rs 15,454.15: OK
+- h1b hedge 2013-11-01: put 5300 (target 5361) paid Rs 1,674.77 = 15% x spread net credit Rs 11,165.12: OK
+- h1b hedge 2015-02-27: put 7500 (target 7518) paid Rs 2,231.60 = 15% x spread net credit Rs 14,877.33: OK
+- h2 buy 2016-07-01: prem_ratio 0.045; long 7900 @ 26.27, short 7500 @ 6.85; debit incl. charges Rs 60,188.64 = 2% of capital; payoff Rs 0.00 = code: OK
+- h2 buy 2018-06-01: prem_ratio 0.032; long 10150 @ 25.44, short 9600 @ 6.85; debit incl. charges Rs 61,300.64 = 2% of capital; payoff Rs 0.00 = code: OK
+- h2 buy 2014-11-28: prem_ratio 0.017; long 8150 @ 11.60, short 7700 @ 2.80; debit incl. charges Rs 44,991.34 = 2% of capital; payoff Rs 0.00 = code: OK
+- h2 sell 2008-08-01: prem_ratio 0.179; credit Rs 19,065.22; max loss = 10% of capital; payoff Rs -0.00 = code: OK
+- h2 sell 2011-09-30: prem_ratio 0.171; credit Rs 44,289.47; max loss = 10% of capital; payoff Rs -0.00 = code: OK
+- h2 sell 2015-08-28: prem_ratio 0.124; credit Rs 33,672.95; max loss = 10% of capital; payoff Rs -0.00 = code: OK
+- ref_p1 reproduces the bugfix-recomputed Phase 4 p1 (validation): max capital gap Rs 0.0000
+- ref_e1f1 reproduces the bugfix-recomputed Phase 4 ref_e1f1 (validation): max capital gap Rs 0.0000
+- ref_base reproduces the bugfix-recomputed Phase 4 ref_base (validation): max capital gap Rs 0.0000
+- no look-ahead: prem_ratio, strikes and sizing use the entry-day chain (chain() asserts date == entry) and the entry-day index close; settlement only for payoff; the e1f1 filter uses entry-day IV and trailing RV.
+- credit_gross - slippage - payout - charges + interest = total_pnl: max gap Rs 0.000000 -> PASS
+- capital_end = capital_start + total_pnl: max gap Rs 0.000000 -> PASS
+- charge items sum to total_charges: max gap Rs 0.000000 -> PASS
+- capital_start = previous capital_end: max gap Rs 0.000000 -> PASS

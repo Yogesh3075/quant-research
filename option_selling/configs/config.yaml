@@ -1,0 +1,144 @@
+# Nifty monthly option-selling backtest. Rules fixed before any run.
+
+start: "2008-01-01"
+tri_path: "/Users/yogesh/Documents/Academics/Quant Models/Quant Internship Projects/factor-regime-rotation/data/processed/tri_daily.csv"
+tri_col: nifty50
+pause: 1.0            # seconds between requests to NSE
+holdout_cycles: 24
+
+capital: 1000000
+max_loss_pct: 0.10    # rules 1-2: max possible loss per month as share of capital
+strangle_notional: 1.0  # rule 3: notional per option as multiple of capital
+strangle_margin: 0.15   # VERIFY: margin per side, share of notional
+cash_rate: 0.065        # VERIFY: interest on cash not used as margin
+rf: 0.065               # risk-free for Black-Scholes and Sharpe
+strike_band: 0.01       # leg must be within 1% of target strike
+
+rules:
+  put_spread:
+    - [P, -1, 0.95]
+    - [P, 1, 0.90]
+  iron_condor:
+    - [P, -1, 0.95]
+    - [P, 1, 0.90]
+    - [C, -1, 1.05]
+    - [C, 1, 1.10]
+  strangle:
+    - [P, -1, 0.95]
+    - [C, -1, 1.05]
+
+costs:                  # all VERIFY
+  slip_min: 0.5         # rupees per unit
+  slip_pct: 0.03        # of option close
+  stt_sell:             # on premium of options sold, [from date, rate]
+    - ["2008-01-01", 0.00017]
+    - ["2016-06-01", 0.0005]
+    - ["2023-04-01", 0.000625]
+    - ["2024-10-01", 0.001]
+    - ["2026-04-01", 0.0015]
+  stt_itm: 0.00125      # on intrinsic value of long options expiring in the money
+  brokerage: 20         # rupees per order, one order per leg at entry
+  exch:                 # exchange transaction charge on premium, [from date, rate]
+    - ["2008-01-01", 0.0005]
+    - ["2024-10-01", 0.0003503]
+  sebi: 0.000001        # Rs 10 per crore of premium
+  stamp: 0.00003        # on premium of options bought
+  gst: 0.18             # on brokerage + exchange + SEBI charges
+
+stress:
+  Oct 2008: ["2008-10-01", "2008-10-31"]
+  Aug 2015: ["2015-08-01", "2015-08-31"]
+  Feb-Mar 2020: ["2020-02-01", "2020-03-31"]
+  4 Jun 2024: ["2024-06-04", "2024-06-04"]
+
+phase2:                 # pre-registered before any Phase 2 run
+  design_end: "2018-12-31"      # design = cycles with entry 2008-01 to 2018-12
+  validation_end: "2024-10-31"  # validation = entry from 2019-01, expiry up to this date; holdout never loaded
+  div_yield: 0.013      # VERIFY: Black-Scholes dividend yield
+  delta_band: 0.03      # strike accepted if |delta| within 0.03 of target, else fallback further OTM
+  hedge_delta: 0.05     # H1 long put delta
+  h2_width: 0.05        # H2 long put at nearest strike at or below short strike - 5% of S0
+  stress_drop: 0.25     # H3 sized so a 25% fall loses 10% of capital
+  naked_margin: 0.15    # VERIFY: H3 margin, share of notional
+  variants:             # name: [short put |delta|, hedge]
+    d20_h1: [0.20, H1]
+    d20_h2: [0.20, H2]
+    d20_h3: [0.20, H3]
+    d15_h1: [0.15, H1]
+    d15_h2: [0.15, H2]
+    d15_h3: [0.15, H3]
+  choice:               # applied to design results only
+    max_worst_month: -0.12
+    min_breakeven_margin: 0.03
+  trials_before: 3
+
+phase3:                 # pre-registered before any Phase 3 run; same split as phase2
+  base: ref_put_spread_fallback   # Phase 1 put spread with the Phase 2 fallback rule
+  stop_mult: 2.0        # E1: exit when MTM loss >= 2 x net credit received (checked at close, exit next day's close)
+  rv_days: 21           # F1: realised vol over the previous 21 trading days to entry
+  min_history: 24       # F1: threshold needs at least 24 earlier cycles with a gap; trade every month before
+  nw_lags: 3            # Newey-West lags for the paired test
+  variants:             # name: [stop, filter]
+    e1: [true, false]
+    f1: [false, true]
+    e1f1: [true, true]
+  trials_before: 9
+
+census:                 # pre-registered before any census run; split as phase2; holdout never loaded
+  notional_cap: 1.5     # stress-sized: units x S0 per short side <= 1.5 x capital
+  naked_margin: 0.15    # VERIFY: per naked short side, share of units x S0
+  fut_margin: 0.12      # VERIFY: S12 futures hedge margin, share of futures notional (max over the cycle)
+  fut_slippage_pts: 1.0 # VERIFY: index points per unit per futures trade
+  fut_stt_sell:         # VERIFY: STT on futures sold, [from, rate]
+    - ["2008-01-01", 0.00017]
+    - ["2013-06-01", 0.0001]
+    - ["2023-04-01", 0.000125]
+    - ["2024-10-01", 0.0002]
+    - ["2026-04-01", 0.0005]
+  fut_exch:             # VERIFY: exchange charge on futures turnover
+    - ["2008-01-01", 0.000019]
+    - ["2024-10-01", 0.0000173]
+  fut_stamp: 0.00002    # VERIFY: stamp duty on futures bought
+  etf_cost: 0.0005      # VERIFY: a year, index leg of S10/S11
+  cap_defined: [s6_iron_butterfly]   # Phase 4 fix: units x S0 per short side <= notional_cap x capital
+  stress_down: 0.25
+  stress_up: 0.20
+  strategies:           # name: [legs [type, side, qty, moneyness], sizing, stop variant]
+    s1_short_put: [[[P, -1, 1, 0.95]], stress_down, true]
+    s2_short_call: [[[C, -1, 1, 1.05]], stress_up, true]
+    s3_short_straddle: [[[C, -1, 1, 1.0], [P, -1, 1, 1.0]], stress_both, true]
+    s4_short_strangle: [[[P, -1, 1, 0.95], [C, -1, 1, 1.05]], stress_both, true]
+    s5_bear_call_spread: [[[C, -1, 1, 1.05], [C, 1, 1, 1.10]], defined, true]
+    s6_iron_butterfly: [[[C, -1, 1, 1.0], [P, -1, 1, 1.0], [C, 1, 1, 1.05], [P, 1, 1, 0.95]], defined, true]
+    s7_cash_secured_put: [[[P, -1, 1, 0.95]], notional, true]
+    s8_put_ratio: [[[P, 1, 1, 0.95], [P, -1, 2, 0.90]], stress_down, true]
+    s9_calendar: [[[P, -1, 1, 1.0], [P, 1, 1, 1.0]], debit, false]
+    s10_covered_call: [[[C, -1, 1, 1.05]], index, false]
+    s11_collar: [[[C, -1, 1, 1.05], [P, 1, 1, 0.95]], index, false]
+    s12_delta_hedged_straddle: [[[C, -1, 1, 1.0], [P, -1, 1, 1.0]], hedged, false]
+  trials_before: 12
+
+phase4:                 # pre-registered before any Phase 4 backtest; base structure = Phase 1 put spread, fallback rule
+  prem_min: 0.12        # P1/P3: trade only if (short close - long close) / (short strike - long strike) >= 0.12
+  sensitivity: [0.10, 0.15]   # P3 thresholds reported for sensitivity only (not trials, no choice)
+  vix_stress: 20        # cost stress: entry slippage x stress_mult when India VIX at entry > 20 (ATM IV proxy before VIX data)
+  stress_mult: 2.0      # and every stop exit's slippage x stress_mult
+  primary: p3           # primary hypothesis, fixed now
+  variants:             # name: [premium filter, index stop]
+    p1: [true, false]
+    p2: [false, true]
+    p3: [true, true]
+  trials_before: 32
+
+phase5:                 # pre-registered before any Phase 5 backtest; holdout not used
+  hedge_moneyness: 0.85 # H1a/H1b: buy the put nearest 0.85 x S0 on the same expiry
+  hedge_budget: 0.15    # hedge premium paid incl. slippage = 15% of the spread's net credit after slippage
+  hedge_sens: [0.10, 0.25]
+  buy_below: 0.06       # H2: buy the 0.95/0.90 put spread when prem_ratio < 0.06 (sell as P1 when >= phase4.prem_min)
+  buy_sens: [0.05, 0.08]
+  buy_debit: 0.02       # H2 buy months: debit incl. slippage and entry charges = 2% of capital
+  trials_before: 35
+
+live:                   # paper-trading tool settings (not rule parameters; rules come from the frozen config files)
+  include_s7: false     # also show S7 cash-secured put + 2x stop
+  lot_size: 65          # fallback only, used if NSE's lot size cannot be read; VERIFY on NSE
