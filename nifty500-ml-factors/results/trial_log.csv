@@ -1,0 +1,4 @@
+trial,model,settings,dev_ic,dev_sharpe,dev_excess_pm,monthly_sr,run_at,best_on_dev
+1,Momentum baseline,"z(0.5 z(12-1) + 0.5 z(6-1)), clip 1/99",0.040358,0.836316,0.006721,0.241424,2026-11-12T22:04:11,False
+2,Linear blend (12 features),"sign of training IC x 12 rank features, equal weight",0.063652,1.006568,0.00305,0.290571,2026-11-12T22:04:11,True
+3,LightGBM,"lightgbm.train, 300 rounds, objective=regression, num_leaves=15, learning_rate=0.05, min_data_in_leaf=200, bagging_fraction=0.8, bagging_freq=1, feature_fraction=0.8, seed=42, deterministic=True",0.052457,0.778359,0.00249,0.224693,2026-11-12T22:04:11,False
