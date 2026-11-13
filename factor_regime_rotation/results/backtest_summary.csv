@@ -1,0 +1,17 @@
+period,strategy,costs,total_ret_%,cagr_%,vol_%,sharpe,max_dd_%,dd_peak,dd_trough,turnover_yr,months,first,last,diff_vs_ew_%,diff_t_nw,share_months_beat_ew,diff_vs_regime_rule_%,diff_vs_regime_rule_t_nw,note
+development,Equal weight,ETF expense + switch (VERIFY),814.8178,16.4928,16.255,0.6375,-27.7193,2018-08-31,2020-03-31,0.1126,174,2010-05-31,2024-10-31,,,,,,
+development,Factor momentum,ETF expense + switch (VERIFY),959.3223,17.677,15.5159,0.7262,-22.0288,2018-08-31,2020-03-31,1.4699,174,2010-05-31,2024-10-31,0.0755,0.5754,0.5747,,,
+development,Regime rule,ETF expense + switch (VERIFY),864.4547,16.918,16.0989,0.6648,-22.6257,2010-10-29,2011-12-30,1.6144,174,2010-05-31,2024-10-31,0.0284,0.2283,0.4483,,,
+development,HMM regime rule,ETF expense + switch (VERIFY),980.3139,17.8364,14.7273,0.7668,-19.897,2020-01-31,2020-03-31,0.2674,174,2010-05-31,2024-10-31,0.0776,0.6563,0.569,0.0491,0.5486,
+development,HMM defensive switch,ETF expense + switch (VERIFY),811.8894,16.467,16.2084,0.6375,-27.7193,2018-08-31,2020-03-31,0.2441,174,2010-05-31,2024-10-31,-0.0024,-0.2759,0.0172,,,
+development,Static momentum + quality,ETF expense + switch (VERIFY),976.3006,17.8061,14.6269,0.7693,-19.897,2020-01-31,2020-03-31,0.0644,174,2010-05-31,2024-10-31,0.0742,0.6313,0.5575,,,chosen after seeing development data
+development,NIFTY 200 TRI,"none: index, not investable as is",491.1876,13.0375,17.0345,0.4382,-28.8676,2019-12-31,2020-03-31,,174,2010-05-31,2024-10-31,-0.2414,-2.5083,0.4023,,,
+development,NIFTY 50 TRI,"none: index, not investable as is",448.3422,12.4525,16.6914,0.4122,-29.1116,2019-12-31,2020-03-31,,174,2010-05-31,2024-10-31,-0.2901,-2.2668,0.4195,,,
+live,Equal weight,ETF expense + switch (VERIFY),196.2838,29.7806,14.4716,1.4546,-11.5819,2021-09-30,2022-06-30,0.1097,50,2020-09-30,2024-10-31,,,,,,
+live,Factor momentum,ETF expense + switch (VERIFY),222.1658,32.4156,15.2435,1.5232,-12.6783,2022-03-31,2022-06-30,1.5091,50,2020-09-30,2024-10-31,0.1807,0.6972,0.52,,,
+live,Regime rule,ETF expense + switch (VERIFY),152.2539,24.8651,14.7471,1.1636,-17.4612,2021-12-31,2022-06-30,1.7429,50,2020-09-30,2024-10-31,-0.3242,-1.9344,0.36,,,
+live,HMM regime rule,ETF expense + switch (VERIFY),162.2982,26.0407,14.4481,1.2507,-17.0318,2021-12-31,2022-06-30,0.3143,50,2020-09-30,2024-10-31,-0.2483,-1.5392,0.46,0.0759,0.7649,
+live,HMM defensive switch,ETF expense + switch (VERIFY),197.3335,29.8908,14.5084,1.4572,-11.5819,2021-09-30,2022-06-30,0.3454,50,2020-09-30,2024-10-31,0.0076,0.9628,0.02,,,
+live,Static momentum + quality,ETF expense + switch (VERIFY),160.6975,25.8557,14.3868,1.2451,-17.0318,2021-12-31,2022-06-30,0.0777,50,2020-09-30,2024-10-31,-0.2615,-1.657,0.44,,,chosen after seeing development data
+live,NIFTY 200 TRI,"none: index, not investable as is",141.8081,23.6041,14.1242,1.1344,-10.4506,2021-10-29,2022-06-30,,50,2020-09-30,2024-10-31,-0.419,-2.1249,0.28,,,
+live,NIFTY 50 TRI,"none: index, not investable as is",123.2836,21.2623,13.7595,1.0194,-9.9125,2021-10-29,2022-06-30,,50,2020-09-30,2024-10-31,-0.5853,-2.2235,0.32,,,

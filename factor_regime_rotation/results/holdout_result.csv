@@ -1,0 +1,9 @@
+period,strategy,costs,total_ret_%,cagr_%,vol_%,sharpe,max_dd_%,dd_peak,dd_trough,turnover_yr,months,first,last,diff_vs_ew_%,diff_t_nw,share_months_beat_ew,diff_vs_regime_rule_%,diff_vs_regime_rule_t_nw,note
+holdout,Equal weight,ETF expense + switch (VERIFY),-5.0189,-2.5418,16.2982,-0.4658,-14.6661,2024-11-29,2025-02-28,0.0962,24,2024-11-29,2026-10-30,,,,,,
+holdout,Factor momentum,ETF expense + switch (VERIFY),-12.9928,-6.7223,16.7453,-0.7086,-18.8317,2024-11-29,2025-02-28,2.5489,24,2024-11-29,2026-10-30,-0.3562,-1.2665,0.4167,,,
+holdout,Regime rule,ETF expense + switch (VERIFY),-19.987,-10.55,16.5832,-0.9685,-19.6523,2024-11-29,2026-10-30,2.7951,24,2024-11-29,2026-10-30,-0.7058,-3.9752,0.2917,,,
+holdout,HMM regime rule,ETF expense + switch (VERIFY),-14.0582,-7.2952,17.4982,-0.7067,-18.1914,2024-11-29,2025-02-28,1.0575,24,2024-11-29,2026-10-30,-0.3978,-1.8636,0.4167,0.308,2.2698,
+holdout,HMM defensive switch,ETF expense + switch (VERIFY),-5.9779,-3.035,15.9859,-0.5094,-14.6661,2024-11-29,2025-02-28,0.5846,24,2024-11-29,2026-10-30,-0.0459,-1.1295,0.0,,,
+holdout,Static momentum + quality,ETF expense + switch (VERIFY),-12.8324,-6.6364,17.5071,-0.6665,-18.1914,2024-11-29,2025-02-28,0.0731,24,2024-11-29,2026-10-30,-0.3397,-1.5469,0.4583,,,chosen after seeing development data
+holdout,NIFTY 200 TRI,"none: index, not investable as is",-1.2322,-0.618,15.547,-0.3705,-14.1841,2025-11-28,2026-03-30,,24,2024-11-29,2026-10-30,0.1527,0.6134,0.5417,,,
+holdout,NIFTY 50 TRI,"none: index, not investable as is",-2.579,-1.2979,14.1857,-0.4678,-14.6752,2025-11-28,2026-03-30,,24,2024-11-29,2026-10-30,0.0797,0.2121,0.4583,,,

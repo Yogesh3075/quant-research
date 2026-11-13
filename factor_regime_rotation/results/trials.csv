@@ -1,0 +1,6 @@
+name,date,parameters
+factor momentum,2026-11-05,"top 2 of momentum/quality/value/lowvol by trailing 12m return, equal weight"
+regime rule,2026-11-05,"top 2 by average return minus EW in same-regime months (trend 12m>0, vol 63d vs expanding median, min 12 months else EW)"
+HMM regime rule,2026-11-05,"top 2 by average return minus EW in past months of the same HMM state (2-state Gaussian HMM, full cov, NIFTY 50 monthly log return and realised vol, expanding refit, seeds 0-4; current state = filtered p(stressed) > 0.5; past states from Viterbi; min 12 months else EW)"
+HMM defensive switch,2026-11-05,"same HMM; filtered p(stressed) > 0.5: 50% quality + 50% lowvol, else equal weight"
+static momentum + quality,2026-11-05,"50% momentum + 50% quality, rebalanced monthly. Reason: Phase 2 HMM regime rule held this pair in 166 of 174 months, so its development edge looked like a fixed tilt; tests that on the holdout. Chosen after seeing development data"

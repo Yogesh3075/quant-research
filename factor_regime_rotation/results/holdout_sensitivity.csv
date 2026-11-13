@@ -1,0 +1,31 @@
+case,period,strategy,cagr_%,sharpe,diff_vs_ew_%,diff_t_nw
+base,holdout,Equal weight,-2.5418,-0.4658,,
+base,holdout,Factor momentum,-6.7223,-0.7086,-0.3562,-1.2665
+base,holdout,Regime rule,-10.55,-0.9685,-0.7058,-3.9752
+base,holdout,HMM regime rule,-7.2952,-0.7067,-0.3978,-1.8636
+base,holdout,HMM defensive switch,-3.035,-0.5094,-0.0459,-1.1295
+base,holdout,Static momentum + quality,-6.6364,-0.6665,-0.3397,-1.5469
+expense x0.5,holdout,Equal weight,-2.3424,-0.4533,,
+expense x0.5,holdout,Factor momentum,-6.5497,-0.698,-0.358,-1.2748
+expense x0.5,holdout,Regime rule,-10.3477,-0.9554,-0.7042,-3.965
+expense x0.5,holdout,HMM regime rule,-7.0622,-0.6926,-0.3941,-1.8468
+expense x0.5,holdout,HMM defensive switch,-2.8385,-0.4968,-0.0461,-1.1294
+expense x0.5,holdout,Static momentum + quality,-6.3987,-0.652,-0.3356,-1.5284
+expense x1.5,holdout,Equal weight,-2.7408,-0.4783,,
+expense x1.5,holdout,Factor momentum,-6.8946,-0.7191,-0.3544,-1.2582
+expense x1.5,holdout,Regime rule,-10.752,-0.9816,-0.7074,-3.9852
+expense x1.5,holdout,HMM regime rule,-7.5276,-0.7207,-0.4015,-1.8804
+expense x1.5,holdout,HMM defensive switch,-3.2312,-0.5219,-0.0457,-1.1296
+expense x1.5,holdout,Static momentum + quality,-6.8735,-0.6809,-0.3437,-1.5654
+switch 0.10%,holdout,Equal weight,-2.5323,-0.4652,,
+switch 0.10%,holdout,Factor momentum,-6.4786,-0.6943,-0.3357,-1.204
+switch 0.10%,holdout,Regime rule,-10.3011,-0.9501,-0.6833,-3.8227
+switch 0.10%,holdout,HMM regime rule,-7.1982,-0.7,-0.3898,-1.8167
+switch 0.10%,holdout,HMM defensive switch,-2.9802,-0.5052,-0.0418,-1.1172
+switch 0.10%,holdout,Static momentum + quality,-6.6294,-0.6661,-0.3399,-1.5477
+switch 0.40%,holdout,Equal weight,-2.5607,-0.467,,
+switch 0.40%,holdout,Factor momentum,-7.2084,-0.737,-0.397,-1.3872
+switch 0.40%,holdout,Regime rule,-11.0463,-1.0055,-0.7508,-4.2671
+switch 0.40%,holdout,HMM regime rule,-7.4891,-0.72,-0.4138,-1.9532
+switch 0.40%,holdout,HMM defensive switch,-3.1447,-0.5176,-0.054,-1.147
+switch 0.40%,holdout,Static momentum + quality,-6.6505,-0.6672,-0.3393,-1.5453

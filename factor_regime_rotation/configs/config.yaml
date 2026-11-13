@@ -1,0 +1,96 @@
+# index names as sent to niftyindices.com (the site accepts them in upper case)
+indices:
+  momentum: NIFTY200 MOMENTUM 30
+  quality: NIFTY200 QUALITY 30
+  value: NIFTY200 VALUE 30
+  lowvol: NIFTY100 LOW VOLATILITY 30
+  alpha: NIFTY200 ALPHA 30
+  nifty200: NIFTY 200
+  nifty50: NIFTY 50
+
+factors: [momentum, quality, value, lowvol, alpha]
+calendar: nifty50
+
+start_date: 2005-04-01
+
+paths:
+  raw: data/raw
+  processed: data/processed
+  results: results
+
+download:
+  pause_seconds: 2.5
+  retries: 3
+
+checks:
+  big_move: 0.10
+  corr_flag: 0.90
+  sanity_flag_pp: 3.0
+
+# NSE Index Dashboard, June 2026: trailing returns in % to 30 Jun 2026 (1 yr absolute, 3 and 5 yr CAGR)
+sanity_date: 2026-06-30
+nse_dashboard:
+  momentum: [-2.54, 14.09, 12.61]
+  quality: [-5.46, 9.44, 9.62]
+  value: [15.39, 30.35, 27.55]
+  lowvol: [-1.23, 11.95, 11.40]
+  alpha: [1.73, 20.07, 17.85]
+
+launch_dates:
+  momentum: 25 Aug 2020
+  quality: 17 Apr 2018
+  lowvol: 08 Jul 2016
+  value: check factsheet
+  alpha: check factsheet
+
+# ---- Phase 1 decisions (fixed before running, not tuned) ----
+# alpha is not traded: its monthly returns correlate 0.97 with momentum
+traded: [momentum, quality, value, lowvol]
+benchmarks: [nifty200, nifty50]
+
+# last 24 month-ends are locked: 2024-11-29 to 2026-10-30, development ends 2024-10-31
+holdout_start: 2024-11-29
+# after the latest known launch date (momentum, 25 Aug 2020); earlier data is back-calculated
+live_start: 2020-09-01
+
+regime:
+  trend_months: 12
+  vol_days: 63
+  min_median_months: 36
+
+backtest:
+  min_history_months: 60
+  top_n: 2
+  momentum_months: 12
+  min_regime_months: 12
+  nw_lags: 3
+
+# VERIFY. Phase 3: expense ratios per factor ETF (base expense ratios from factsheets, Sep to Nov 2026)
+costs:
+  switch: 0.0020          # per unit of one-way turnover (ETF spread + brokerage + taxes), rough
+  expense:                # a year, charged monthly on the weights held
+    momentum: 0.0076      # ICICI Pru Nifty 200 Momentum 30 ETF
+    quality: 0.0025       # Kotak Nifty200 Quality 30 ETF
+    value: 0.0026         # ICICI Pru Nifty200 Value 30 ETF
+    lowvol: 0.0036        # ICICI Pru Nifty 100 Low Volatility 30 ETF
+  phase2_expense: 0.0030  # flat rate of Phases 1 and 2, used only for the comparison
+risk_free: 0.065          # a year, fixed
+
+# ---- Phase 2: 2-state HMM on NIFTY 50 monthly log return and realised vol (fixed before running) ----
+hmm:
+  states: 2
+  covariance: full
+  iterations: 200
+  seeds: [0, 1, 2, 3, 4]
+  stressed_above: 0.5          # p(stressed) at t above this = stressed
+  defensive: [quality, lowvol]  # held 50/50 by the defensive switch when stressed
+
+# ---- Phase 3: pre-registered before the holdout is loaded ----
+static: [momentum, quality]   # trial 5: static 50/50, chosen after seeing development data
+sensitivity:                  # reported as sensitivity, not selection
+  expense_scale: [0.5, 1.5]
+  switch: [0.0010, 0.0040]
+holdout:
+  first_decision: 2024-10-31  # held over Nov 2024; scored months are Nov 2024 to Oct 2026 (24)
+  last_decision: 2026-09-30   # held over Oct 2026
+  log: results/holdout_runs.log
