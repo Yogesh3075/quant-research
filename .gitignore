@@ -1,0 +1,32 @@
+# ---- Data: not in the repo (each project's README says where it comes from) ----
+data/
+**/data/
+cache/
+**/cache/
+*bhavcopy*/
+**/*bhavcopy*/
+*.parquet
+*.zip
+*.pkl
+*.h5
+*.feather
+# written by the original pairs scan for its audit (2 MB)
+stat_arb/results/daily_net_returns.csv
+
+# ---- Secrets and local environment ----
+.env
+.env.*
+*.key
+*.pem
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+.idea/
