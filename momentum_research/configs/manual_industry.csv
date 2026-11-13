@@ -1,0 +1,2 @@
+# Hand-filled industries: stock_id,industry,note (industry must be in NSE's current list)
+stock_id,industry,note

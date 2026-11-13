@@ -1,0 +1,36 @@
+file_id,stock_id,date,move,source,raw_move,volume_vs_median,cls,why
+INE111B01023,63MOONS,2013-08-01,-0.645,yahoo,-0.645,130.95,corporate_action,NSE action
+INE270A01029,ALOKINDS,2020-02-19,4.1061,yahoo,,,suspect,not in NSE raw close
+INE130C01021,AMTEKAUTO,2015-09-11,0.5393,nse_built,0.5393,36.77,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE545U01014,BANDHANBNK,2020-03-26,0.3932,yahoo,0.3932,7.33,suspect,reversed within 5 days
+INE476A01022,CANBK,2017-10-25,0.3873,yahoo,0.3873,20.65,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE483S01038,CCAVENUE,2018-09-28,-0.7083,yahoo,-0.7083,33.59,corporate_action,NSE action
+INE736A01011,CDSL,2017-07-03,-0.4992,yahoo,0.0021,0.29,suspect,"not in NSE raw close, low volume"
+INE247G01024,COREEDUTEC,2013-02-25,-0.624,nse_built,-0.624,407.49,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE247G01024,COREEDUTEC,2013-02-27,-0.4581,nse_built,-0.4581,563.01,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE202B01012,DHFL,2018-09-21,-0.4258,nse_built,-0.4258,28.17,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE069I01010,EMBDL,2017-04-17,0.4001,yahoo,0.4001,31.79,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE510A01028,ENGINERSIN,2010-05-06,-0.8,nse_built,-0.8,18.68,corporate_action,Yahoo action
+INE043A01012,GTL,2011-06-20,-0.6218,yahoo,-0.6218,2938.51,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE221H01019,GTLINFRA,2011-06-20,-0.4274,yahoo,-0.4274,666.57,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE669E01016,IDEA,2019-11-19,0.3596,yahoo,0.3596,7.5,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE669E01016,IDEA,2020-02-19,0.4,yahoo,0.4,5.07,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE669E01016,IDEA,2020-03-18,-0.3505,yahoo,-0.3505,10.18,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE095A01012,INDUSINDBK,2020-03-26,0.4467,yahoo,0.4467,6.5,suspect,reversed within 5 days
+INE802G01018,JETAIRWAYS,2019-06-18,-0.4079,yahoo,-0.4079,3.37,suspect,reversed within 5 days
+INE802G01018,JETAIRWAYS,2019-06-20,0.8988,yahoo,0.8988,7.48,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE808B01016,OPTOCIRCUI,2013-05-31,-0.377,nse_built,-0.377,17.91,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE785M01021,PCJEWELLER,2018-05-04,0.438,yahoo,0.438,29.29,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE785M01021,PCJEWELLER,2018-05-07,0.3756,yahoo,0.3756,29.45,suspect,reversed within 5 days
+INE160A01022,PNB,2017-10-25,0.462,yahoo,0.462,25.55,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE417T01026,POLICYBZR,2026-09-24,-0.36,yahoo,-0.36,24.39,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE330H01018,RCOM,2017-12-20,0.3569,yahoo,0.3569,7.16,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE330H01018,RCOM,2018-05-17,0.5619,yahoo,0.5619,7.57,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE036A01016,RELINFRA,2019-06-20,0.3892,yahoo,0.3494,7.26,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE540B01015,RELMEDIA,2010-10-05,0.3677,nse_built,0.3677,91.61,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE694A01020,UNITECH,2015-06-03,-0.3532,yahoo,-0.3569,13.13,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE528G01035,YESBANK,2020-03-06,-0.5611,yahoo,-0.5611,8.89,suspect,reversed within 5 days
+INE528G01035,YESBANK,2020-03-11,0.3553,yahoo,0.3553,2.91,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE528G01035,YESBANK,2020-03-16,0.4521,yahoo,0.4521,1.17,real,"NSE raw close shows it, volume normal or high, not reversed"
+INE528G01035,YESBANK,2020-03-17,0.5809,yahoo,0.5809,1.57,suspect,reversed within 5 days
+INE256A01028,ZEEL,2021-09-14,0.3998,yahoo,0.3998,33.27,real,"NSE raw close shows it, volume normal or high, not reversed"

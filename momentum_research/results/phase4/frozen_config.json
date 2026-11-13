@@ -1,0 +1,17 @@
+{
+  "params": {
+    "name": "score|N50|quarterly",
+    "kind": "momentum",
+    "signal": "score",
+    "n": 50,
+    "buffer": 75,
+    "rebalance": "quarterly"
+  },
+  "rule": "highest net Sharpe on the full development period (base costs); tie-break mean IC, then turnover",
+  "full_development_sharpe": 0.8216063667935344,
+  "mean_ic": 0.044183043713005764,
+  "turnover": 1.7204503483621838,
+  "config_sha256": "c9f05c877b2548a99dab75b690781bb0f1bb6fa52ee0ccc1c0ae9541f50dbf82",
+  "data_end_date": "2026-11-11",
+  "written": "2026-11-12"
+}

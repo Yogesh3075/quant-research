@@ -1,0 +1,21 @@
+trial_id,date,phase,description,parameters,period,result_file
+1,2026-11-12,3,"primary: top 30 equal weight, buffer rank 45, sector cap 25%, monthly",holdings=30;buffer=45;sector_cap=0.25;rebalance=monthly,development,Data/processed/results/phase3/backtest_report.md
+2,2026-11-12,3,"alternative: same rule rebalanced quarterly (Mar, Jun, Sep, Dec)",holdings=30;buffer=45;sector_cap=0.25;rebalance=quarterly,development,Data/processed/results/phase3/backtest_report.md
+3,2026-11-12,4,"grid: signal score, N 20, monthly",signal=score;holdings=20;buffer=30;sector_cap=0.25;rebalance=monthly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+4,2026-11-12,4,"grid: signal score, N 20, quarterly",signal=score;holdings=20;buffer=30;sector_cap=0.25;rebalance=quarterly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+5,2026-11-12,4,"grid: signal score, N 50, monthly",signal=score;holdings=50;buffer=75;sector_cap=0.25;rebalance=monthly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+6,2026-11-12,4,"grid: signal score, N 50, quarterly",signal=score;holdings=50;buffer=75;sector_cap=0.25;rebalance=quarterly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+7,2026-11-12,4,"grid: signal z_12_1, N 20, monthly",signal=z_12_1;holdings=20;buffer=30;sector_cap=0.25;rebalance=monthly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+8,2026-11-12,4,"grid: signal z_12_1, N 20, quarterly",signal=z_12_1;holdings=20;buffer=30;sector_cap=0.25;rebalance=quarterly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+9,2026-11-12,4,"grid: signal z_12_1, N 30, monthly",signal=z_12_1;holdings=30;buffer=45;sector_cap=0.25;rebalance=monthly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+10,2026-11-12,4,"grid: signal z_12_1, N 30, quarterly",signal=z_12_1;holdings=30;buffer=45;sector_cap=0.25;rebalance=quarterly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+11,2026-11-12,4,"grid: signal z_12_1, N 50, monthly",signal=z_12_1;holdings=50;buffer=75;sector_cap=0.25;rebalance=monthly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+12,2026-11-12,4,"grid: signal z_12_1, N 50, quarterly",signal=z_12_1;holdings=50;buffer=75;sector_cap=0.25;rebalance=quarterly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+13,2026-11-12,4,"grid: signal z_6_1, N 20, monthly",signal=z_6_1;holdings=20;buffer=30;sector_cap=0.25;rebalance=monthly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+14,2026-11-12,4,"grid: signal z_6_1, N 20, quarterly",signal=z_6_1;holdings=20;buffer=30;sector_cap=0.25;rebalance=quarterly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+15,2026-11-12,4,"grid: signal z_6_1, N 30, monthly",signal=z_6_1;holdings=30;buffer=45;sector_cap=0.25;rebalance=monthly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+16,2026-11-12,4,"grid: signal z_6_1, N 30, quarterly",signal=z_6_1;holdings=30;buffer=45;sector_cap=0.25;rebalance=quarterly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+17,2026-11-12,4,"grid: signal z_6_1, N 50, monthly",signal=z_6_1;holdings=50;buffer=75;sector_cap=0.25;rebalance=monthly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+18,2026-11-12,4,"grid: signal z_6_1, N 50, quarterly",signal=z_6_1;holdings=50;buffer=75;sector_cap=0.25;rebalance=quarterly,development (walk-forward),Data/processed/results/phase4/walkforward_report.md
+19,2026-11-12,5,"sector-neutral: score z-scored within sector, primary rules",signal=score_sector;holdings=30;buffer=45;sector_cap=0.25;rebalance=monthly,development + walk-forward test months,Data/processed/results/phase5/institutional_report.md
+20,2026-11-12,5,"size-neutral: score z-scored within traded-value terciles, primary rules",signal=score_size;holdings=30;buffer=45;sector_cap=0.25;rebalance=monthly,development + walk-forward test months,Data/processed/results/phase5/institutional_report.md

@@ -1,0 +1,5 @@
+Data/
+*.pdf
+# per-trade and per-holding files of the phase 3 backtests (5-13 MB each) and cached frames
+results/phase3/*/holdings.csv
+results/phase3/*/trades.csv

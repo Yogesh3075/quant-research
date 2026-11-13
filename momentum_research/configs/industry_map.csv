@@ -1,0 +1,92 @@
+# Old NSE industry names -> NSE's current industry list. 'votes': stocks listed under both names agree;
+# 'by name': votes weak, tied, absent or distorted by a company that changed business (e.g. Century Textiles -> real estate).
+old_name,current_name,method,votes,vote_top,vote_share
+ABRASIVES,Capital Goods,by name,1.0,Capital Goods,1.0
+AIRCONDITIONERS,Consumer Durables,votes (weak),2.0,Consumer Durables,1.0
+ALUMINIUM,Metals & Mining,votes (weak),2.0,Metals & Mining,1.0
+AUTO ANCILLARIES,Automobile and Auto Components,votes,5.0,Automobile and Auto Components,1.0
+AUTOMOBILE,Automobile and Auto Components,votes,27.0,Automobile and Auto Components,0.9
+AUTOMOBILES - 2 AND 3 WHEELERS,Automobile and Auto Components,votes,3.0,Automobile and Auto Components,0.6
+AUTOMOBILES - 4 WHEELERS,Automobile and Auto Components,votes,4.0,Automobile and Auto Components,0.67
+BANKS,Financial Services,votes,19.0,Financial Services,1.0
+BEARINGS,Capital Goods,by name,1.0,Automobile and Auto Components,0.5
+BREW/DISTILLERIES,Fast Moving Consumer Goods,votes,3.0,Fast Moving Consumer Goods,1.0
+CABLES - TELECOM,Telecommunication,by name,1.0,Telecommunication,1.0
+CASTINGS/FORGINGS,Automobile and Auto Components,votes (weak),1.0,Automobile and Auto Components,1.0
+CEMENT & CEMENT PRODUCTS,Construction Materials,votes,12.0,Construction Materials,0.92
+CEMENT AND CEMENT PRODUCTS,Construction Materials,votes,9.0,Construction Materials,1.0
+CHEMICALS,Chemicals,votes,22.0,Chemicals,0.96
+CHEMICALS - INORGANIC,Chemicals,votes (weak),2.0,Chemicals,0.67
+CHEMICALS - ORGANIC,Chemicals,by name,2.0,Chemicals,0.5
+CHEMICALS - SPECIALITY,Chemicals,votes (weak),1.0,Chemicals,1.0
+CIGARETTES,Fast Moving Consumer Goods,votes (weak),2.0,Fast Moving Consumer Goods,1.0
+COMPRESSORS / PUMPS,Capital Goods,votes,3.0,Capital Goods,1.0
+COMPUTERS - HARDWARE,Information Technology,votes (weak),2.0,Information Technology,1.0
+COMPUTERS - SOFTWARE,Information Technology,votes,13.0,Information Technology,0.81
+CONSTRUCTION,Construction,votes (weak),14.0,Construction,0.42
+CONSUMER DURABLES,Consumer Durables,by name,,,
+CONSUMER GOODS,Fast Moving Consumer Goods,votes (weak),31.0,Fast Moving Consumer Goods,0.48
+CYCLES,Automobile and Auto Components,by name,,,
+DETERGENTS,Fast Moving Consumer Goods,by name,,,
+DIESEL ENGINES,Capital Goods,votes (weak),1.0,Capital Goods,1.0
+DIVERSIFIED,Diversified,by name,2.0,Fast Moving Consumer Goods,0.5
+DYES AND PIGMENTS,Chemicals,votes (weak),1.0,Chemicals,1.0
+ELECTRICAL EQUIPMENT,Capital Goods,votes,7.0,Capital Goods,0.78
+ELECTRODES,Capital Goods,votes (weak),2.0,Capital Goods,1.0
+ELECTRONICS - INDUSTRIAL,Capital Goods,votes (weak),2.0,Capital Goods,1.0
+ENERGY,Oil Gas & Consumable Fuels,votes (weak),16.0,Oil Gas & Consumable Fuels,0.44
+ENGINEERING,Capital Goods,by name,2.0,Capital Goods,0.5
+FASTNERS,Automobile and Auto Components,votes (weak),1.0,Automobile and Auto Components,1.0
+FERTILISERS,Chemicals,votes,6.0,Chemicals,1.0
+FERTILISERS & PESTICIDES,Chemicals,votes,10.0,Chemicals,0.91
+FINANCE,Financial Services,votes,14.0,Financial Services,1.0
+FINANCE - HOUSING,Financial Services,votes,3.0,Financial Services,1.0
+FINANCIAL INSTITUTION,Financial Services,votes,4.0,Financial Services,1.0
+FINANCIAL SERVICES,Financial Services,votes,80.0,Financial Services,0.99
+FOOD AND FOOD PROCESSING,Fast Moving Consumer Goods,votes (weak),2.0,Fast Moving Consumer Goods,1.0
+GAS,Oil Gas & Consumable Fuels,votes,4.0,Oil Gas & Consumable Fuels,0.8
+GEMS,Consumer Durables,by name,1.0,Consumer Durables,1.0
+GEMS JEWELLERY AND WATCHES,Consumer Durables,votes (weak),2.0,Consumer Durables,1.0
+HEALTHCARE SERVICES,Healthcare,votes,7.0,Healthcare,1.0
+HOTELS,Consumer Services,votes (weak),2.0,Consumer Services,1.0
+INDUSTRIAL MANUFACTURING,Capital Goods,votes,41.0,Capital Goods,0.87
+IT,Information Technology,votes,22.0,Information Technology,0.79
+LEATHER AND LEATHER PRODUCTS,Consumer Durables,votes (weak),1.0,Consumer Durables,1.0
+MEDIA & ENTERTAINMENT,Media Entertainment & Publication,votes,9.0,Media Entertainment & Publication,1.0
+METALS,Metals & Mining,votes (weak),13.0,Metals & Mining,0.57
+MINING,Metals & Mining,votes,3.0,Metals & Mining,1.0
+MISCELLANEOUS,Unclassified,by name,2.0,Consumer Services,0.22
+OIL & GAS,Oil Gas & Consumable Fuels,votes,17.0,Oil Gas & Consumable Fuels,1.0
+OIL EXPLORATION/PRODUCTION,Oil Gas & Consumable Fuels,votes (weak),1.0,Oil Gas & Consumable Fuels,1.0
+PACKAGING,Capital Goods,votes (weak),2.0,Capital Goods,0.67
+PAINTS,Consumer Durables,votes,4.0,Consumer Durables,1.0
+PAPER,Forest Materials,by name,1.0,Forest Materials,0.5
+PAPER AND PAPER PRODUCTS,Forest Materials,by name,,,
+PERSONAL CARE,Fast Moving Consumer Goods,votes,6.0,Fast Moving Consumer Goods,1.0
+PESTICIDES AND AGROCHEMICALS,Chemicals,votes (weak),2.0,Chemicals,0.67
+PETROCHEMICALS,Chemicals,by name,1.0,Capital Goods,1.0
+PHARMA,Healthcare,votes,36.0,Healthcare,0.97
+PHARMACEUTICALS,Healthcare,votes,22.0,Healthcare,0.96
+PLASTIC AND PLASTIC PRODUCTS,Capital Goods,by name,1.0,Capital Goods,0.5
+POWER,Power,votes,15.0,Power,0.94
+PRINTING AND PUBLISHING,Media Entertainment & Publication,by name,,,
+REFINERIES,Oil Gas & Consumable Fuels,votes,6.0,Oil Gas & Consumable Fuels,1.0
+REFRACTORIES,Capital Goods,by name,,,
+SERVICES,Services,votes,17.0,Services,0.63
+SHIPPING,Services,votes (weak),2.0,Services,1.0
+SOLVENT EXTRACTION,Fast Moving Consumer Goods,votes (weak),1.0,Fast Moving Consumer Goods,1.0
+STEEL AND STEEL PRODUCTS,Metals & Mining,votes (weak),5.0,Metals & Mining,0.56
+SUGAR,Fast Moving Consumer Goods,votes,3.0,Fast Moving Consumer Goods,1.0
+TEA AND COFFEE,Fast Moving Consumer Goods,votes (weak),2.0,Fast Moving Consumer Goods,1.0
+TELECOM,Telecommunication,votes,7.0,Telecommunication,1.0
+TELECOMMUNICATION - EQUIPMENT,Telecommunication,by name,1.0,Information Technology,1.0
+TELECOMMUNICATION - SERVICES,Telecommunication,votes,3.0,Telecommunication,1.0
+TEXTILE MACHINERY,Capital Goods,votes (weak),1.0,Capital Goods,1.0
+TEXTILE PRODUCTS,Textiles,by name,1.0,Realty,0.5
+TEXTILES,Textiles,votes,9.0,Textiles,0.75
+TEXTILES - COTTON,Textiles,votes (weak),2.0,Textiles,1.0
+TEXTILES - SYNTHETIC,Textiles,by name,1.0,Chemicals,1.0
+TRADING,Services,by name,1.0,Consumer Durables,0.2
+TRANSMISSION TOWERS,Construction,votes (weak),2.0,Construction,1.0
+TRAVEL AND TRANSPORT,Services,votes,4.0,Services,0.8
+TYRES,Automobile and Auto Components,votes (weak),2.0,Automobile and Auto Components,1.0

@@ -1,0 +1,15 @@
+# Rows transcribed by hand from notices the parser cannot read. Every row cites the notice it comes from.
+# actions: include / exclude (new rows), cancel_include / cancel_exclude (drop a parsed row: same date and symbol),
+# void_notice (drop every parsed row of source_file effective that date), symbol_for_name (give parsed rows with
+# this exact company_name a symbol)
+effective_date,action,symbol,company_name,reason,announce_date,source_file,note
+2020-03-27,void_notice,,,,,effNA_ann2020-02-18_ind_prs18022020.pdf,"Notice of 13 May 2020 (ind_prs13052020): replacements effective 27 Mar 2020 announced 18 Feb, 12 Mar and 19 Mar 2020 stand null and void"
+2020-03-27,void_notice,,,,,2020-03-27_ann2020-03-19_ind_prs19032020.pdf,"same 13 May 2020 notice"
+2020-03-27,void_notice,,,,,2020-03-27_ann2020-03-12_ind_prs12032020.pdf,"same 13 May 2020 notice"
+2023-07-20,include,,Jio Financial Services Ltd.,demerger,2023-07-17,effNA_ann2023-07-17_ind_prs17072023.pdf,"spun-off entity Reliance Strategic Investments Ltd (to be renamed Jio Financial Services Ltd) included in Nifty 500 effective 20 Jul 2023; symbol left to the name resolver"
+2024-03-28,cancel_include,IREDA,Indian Renewable Energy Development Agency Ltd.,review,2024-03-19,2024-03-28_ann2024-03-19_ind_prs19032024.pdf,"Nifty 500: IREDA inclusion revoked"
+2024-03-28,cancel_exclude,VGUARD,V-Guard Industries Ltd.,review,2024-03-19,2024-03-28_ann2024-03-19_ind_prs19032024.pdf,"Nifty 500: VGUARD exclusion revoked"
+2024-08-30,exclude,TATAMTRDVR,Tata Motors Ltd. 'A' Ordinary Shares - DVR,other,2024-08-23,2024-08-30_ann2024-08-23_ind_prs23082024_1.pdf,"DVR shares cancelled; excluded from Nifty 500 (table item 3)"
+2024-09-30,cancel_exclude,IDEA,Vodafone Idea Ltd.,review,2024-09-25,effNA_ann2024-09-25_ind_prs25092024.pdf,"Nifty 500: IDEA exclusion revoked; changes effective 30 Sep 2024"
+2024-09-30,exclude,PRSMJOHNSN,Prism Johnson Ltd.,review,2024-09-25,effNA_ann2024-09-25_ind_prs25092024.pdf,"Nifty 500: Prism Johnson excluded in place of IDEA"
+2011-03-25,symbol_for_name,PIPAVAVYD,Pipavav Shipyard Ltd.,,,2011-03-25_ann2011-02-10_ind_prs10022011.pdf,"notice gives the name only; NSE symbolchange lists PIPAVAVYD as the first symbol of this company (PIPAVAVYD > PIPAVAVDOC > RDEL > RNAVAL)"

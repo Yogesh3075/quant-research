@@ -1,0 +1,9 @@
+# Symbol changes missing from NSE's symbolchange.csv; each row cites its evidence.
+old,new,date,evidence
+CASTROL,CASTROLIND,2014-03-14,"notice ind_prs21022014: trading suspended from 28 Feb 2014 for capital reduction; bhavcopy: last CASTROL row 26 Feb 2014 (INE172A01019), first CASTROLIND row 14 Mar 2014 (INE172A01027, same issuer)"
+ESSARSHIP,ESSARPORTS,2011-05-31,"bhavcopy: last ESSARSHIP 17 May 2011, first ESSARPORTS 31 May 2011 (BE); same issuer INE282A (relisted_check, Phase 1c)"
+HIMACHLFUT,HFCL,2011-03-09,"bhavcopy: last HIMACHLFUT 7 Feb 2011, first HFCL 9 Mar 2011 (BE); issuer INE548A is HFCL in today's NSE list"
+KIRLOSOIL,KIRLOSIND,2010-06-24,"bhavcopy: last KIRLOSOIL 20 Apr 2010, first KIRLOSIND 24 Jun 2010; issuer INE250A is KIRLOSIND in today's NSE list"
+FUTUREVENT,FVIL,2013-07-04,"bhavcopy: last FUTUREVENT 20 Jun 2013 (INE220J01017), first FVIL 4 Jul 2013 (INE220J01025, BE)"
+SUJANATOW,SUJANATWR,2013-09-11,"bhavcopy: last SUJANATOW 6 Aug 2013 (INE333I01010), first SUJANATWR 11 Sep 2013 (INE333I01036)"
+SUPPETRO,SPLPETRO,2022-05-24,"bhavcopy: last SUPPETRO 6 Apr 2022 (INE663A01017), first SPLPETRO 24 May 2022 (INE663A01025, BE)"

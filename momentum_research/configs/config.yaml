@@ -1,0 +1,276 @@
+# Phase 0: point-in-time Nifty 500 universe
+
+paths:
+  raw_universe: Data/raw/universe
+  raw_notices: Data/raw/universe/notices
+  manual: Data/raw/manual
+  manual_notices: Data/raw/manual/notices
+  processed_universe: Data/processed/universe
+  manual_rows: Configs/manual_notice_rows.csv
+  manual_symbol_changes: Configs/manual_symbol_changes.csv
+  raw_prices: Data/raw/prices
+  raw_industry: Data/raw/industry
+  processed_prices: Data/processed/prices
+  processed_liquidity: Data/processed/liquidity
+  processed_factors: Data/processed/factors
+  results: Data/processed/results
+  industry_map: Configs/industry_map.csv
+  manual_industry: Configs/manual_industry.csv
+
+urls:
+  current_list: https://www.niftyindices.com/IndexConstituent/ind_nifty500list.csv
+  press_listing: https://www.niftyindices.com/press-release
+  press_base: https://www.niftyindices.com
+  symbol_changes: https://nsearchives.nseindia.com/content/equities/symbolchange.csv
+  name_changes: https://nsearchives.nseindia.com/content/equities/namechange.csv
+  equity_list: https://nsearchives.nseindia.com/content/equities/EQUITY_L.csv
+  delisted: https://nsearchives.nseindia.com/content/equities/delisted.csv
+  # {date} is DDMMYYYY
+  bhavcopy_full: https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_{date}.csv
+  # old archive: {yyyy} {mon} (JAN) {dd}{MON}{yyyy}
+  bhavcopy_old: https://nsearchives.nseindia.com/content/historical/EQUITIES/{yyyy}/{mon}/cm{dd}{mon}{yyyy}bhav.csv.zip
+  # new UDiFF format, from Jul 2024: {date} is YYYYMMDD
+  bhavcopy_udiff: https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_{date}_F_0000.csv.zip
+  index_tri: https://www.niftyindices.com/BackPage/getTotalReturnIndexString
+  index_price: https://www.niftyindices.com/BackPage/getHistoricaldatatabletoString
+  index_referer: https://www.niftyindices.com/reports/historical-data
+  # {symbol} {start} {end}: dates DD-MM-YYYY
+  nse_ca: https://www.nseindia.com/api/corporates-corporateActions?index=equities&symbol={symbol}&from_date={start}&to_date={end}
+  nse_ca_referer: https://www.nseindia.com/companies-listing/corporate-filings-actions
+  nse_quote: https://www.nseindia.com/api/quote-equity?symbol={symbol}
+  wayback_cdx: http://web.archive.org/cdx/search/cdx
+  # {ts} snapshot timestamp, {url} original URL; id_ returns the file as archived
+  wayback_file: http://web.archive.org/web/{ts}id_/{url}
+
+http:
+  retries: 3
+  user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+  pause_seconds: 1.5
+  timeout_seconds: 30
+
+universe:
+  start_date: "2010-01-01"
+  # notices listed from this date are downloaded (a notice in late 2009 can take effect in 2010)
+  notice_listing_from: "2009-10-01"
+  # press-release titles matching this are never about the Nifty 500
+  # IPO / SME patterns are anchored so that combined notices ("... and Replacement in Nifty IPO") are kept
+  title_skip_regex: "Fixed Income|G-Sec|GSEC|Bond|SDL|Target Maturity|T-Bill|Gilt|Money Market|launch|dissemination|AIF Bench|^(?:Inclusions?|Replacements?|Exclusions?|Changes?) (?:in|from) (?:the )?(?:Nifty IPO|NIFTY SME EMERGE|Nifty SME Emerge)(?: index)?(?: w\\.e\\.f\\..*)?$"
+  # a notice counts only if its text matches this
+  index_name_regex: "(NIFTY\\s*500|CNX\\s*500|S&P\\s*CNX\\s*500)(?!\\s*(Shariah|Value|Quality|Momentum|Multicap|Equal|Low|Multi|Ahimsa|Growth|Healthcare|Flexicap|LargeMidSmall|Multifactor))"
+  count_min: 495
+  count_max: 505
+  # semi-annual reviews take effect around the end of these months
+  review_months: [3, 9]
+  # a review counts as found if one notice brings this many changes within this many days of the month end
+  review_min_rows: 5
+  review_window_days: 45
+  # reviews that took effect far from their usual month (from the notices)
+  review_moved:
+    "Mar 2020": "deferred to 2020-06-26 (notices of 23 Mar and 13 May 2020)"
+
+coverage:
+  yahoo_suffix: ".NS"
+  yahoo_start: "2009-01-01"
+  yahoo_pause_seconds: 0.5
+  # NSE moved to the UDiFF bhavcopy format on this date
+  udiff_from: "2024-07-08"
+  # look back this many days from a month-end for a trading day
+  max_days_back: 8
+
+ocr:
+  # scanned notices (no text layer) are read with tesseract if it is installed
+  tesseract: tesseract
+  resolution: 300
+  min_chars: 200
+
+decisions:
+  # spells entered through these inclusions are temporary securities with no prices
+  placeholder_prefix: DUMMY
+  spinoff_inclusions:
+    - {stock_id: JIOFIN, date: "2023-07-20"}   # spun-off entity, no dummy symbol (manual_notice_rows.csv)
+  # one company, one security: second share classes are never eligible
+  second_share_classes: [TATAMTRDVR]
+  # spells whose membership cannot be confirmed from the notices
+  uncertain_spells:
+    - {stock_id: JINDALSAW, start: "2011-11-22", end: "2016-04-29", reason: "membership uncertain (missing inclusion notice)"}
+  # documented gaps: spells starting or ending in these windows may depend on the missing notice
+  missing_notices:
+    - {name: "Sep 2010 review (no notice on the site)", start: "2010-08-15", end: "2010-10-31"}
+    - {name: "ind_prs02032012.pdf (CNX 500 change w.e.f. 7 Mar 2012, site returns an error page)", start: "2012-03-01", end: "2012-03-20"}
+
+prices:
+  start: "2010-01-01"
+  # history needed before the first spell (12-1 look-back) and after the last (holding until next rebalance)
+  lookback_months: 13
+  after_months: 2
+  indices: ["NIFTY 500", "NIFTY 50"]
+  calendar_index: "NIFTY 50"
+  index_chunk_days: 365
+  ca_from: "01-01-2009"
+  yahoo_pause_seconds: 0.5
+  max_consecutive_misses: 15
+  # preferred first
+  nse_series: [EQ, BE, BZ]
+  # one-day move flagged for review when no corporate action is near
+  event_move: 0.35
+  # a security whose last price is this many days before the last index day has stopped trading
+  stale_days: 10
+  # report index days where more than this share of eligible stocks has no price
+  max_missing_share: 0.10
+  # a lone Yahoo row whose Yahoo/NSE ratio differs from both neighbours by more than this is dropped
+  bad_row_tolerance: 0.05
+
+crosscheck:
+  # Yahoo close vs NSE close adjusted for splits and bonuses
+  tolerance: 0.005
+  agree_share: 0.99
+  minor_share: 0.95
+  max_bad_run: 5
+  min_yahoo_coverage: 0.95
+  # split factors must match within this, within this many days of the NSE ex-date
+  factor_tolerance: 0.02
+  event_days: 5
+  # Yahoo can apply a demerger/rights adjustment a few days away from NSE's ex-date
+  explain_days: 10
+  worst_n: 3
+  # a ratio step counts as lasting if the median over this many days after differs from before
+  step_days: 5
+  # disagree resolution: Yahoo's step must be a standard split/bonus ratio within this, and NSE's raw close
+  # must move by the same factor within this (market moves on the day add noise)
+  standard_tolerance: 0.01
+  raw_move_tolerance: 0.15
+
+liquidity:
+  window_days: 63
+  min_obs: 21
+  # rupees; VERIFY: thresholds are placeholders for discussion, no filter is applied yet
+  thresholds_crore: [1, 5, 10, 25]
+  report_dates: ["2011-12-31", "2016-12-31", "2021-12-31"]
+
+industry:
+  # constituent files archived by the Internet Archive (same file, older NSE paths first)
+  archived_urls:
+    - nseindia.com/content/indices/ind_cnx500list.csv
+    - nseindia.com/content/indices/ind_nifty500list.csv
+    - archives.nseindia.com/content/indices/ind_nifty500list.csv
+    - niftyindices.com/IndexConstituent/ind_nifty500list.csv
+  wayback_pause_seconds: 3
+  # archive.org blocks browser-like agents from scripts; a plain research client name is accepted
+  wayback_user_agent: "nifty500-momentum-research/0.1 (python-requests)"
+  max_unclassified_share: 0.05
+  # snapshots from this date use NSE's current industry names
+  current_taxonomy_from: "2022-01-01"
+  # a vote mapping is used as is only with this many stocks and this share agreeing
+  min_votes: 3
+  min_vote_share: 0.6
+
+events:
+  # demerger / rights review and the >35% move review (Phase 1c)
+  match_days: 10          # a corporate action or notice this close to a date matches it
+  recover_days: 5         # "does not come back" / "not reversed" is judged this many trading days later
+  min_value: 0.02         # implied value below this share of the price is immaterial
+  volume_days: 63         # normal volume = median over this many prior trading days
+  min_volume_ratio: 1.0   # volume on the day at least normal (Phase 3: a confirmed move counts as real even if it reverses)
+  same_move: 0.05         # NSE raw move must equal the series move within this
+  relist_days: 40         # look this many days after a last price for the same ISIN issuer under another symbol
+  suspension_min_days: 5  # a gap of at least this many index sessions is a stop in trading
+  suspension_max_days: 60 # trading again within this many calendar days = suspension (held, not sold)
+
+# ---------- Phase 2: pre-registered split and definitions (see Configs/preregistration.md) ----------
+split:
+  first_signal_month: "2011-01"
+  last_dev_month: "2024-10"
+  holdout_first_month: "2024-11"
+  # execution at the close of the n-th regular session after the signal date
+  execution_lag_days: 1
+  # special sessions: weekends, or turnover below this share of the trailing median (Muhurat trading)
+  special_turnover_ratio: 0.25
+  turnover_window: 20
+  # set only in the final testing phase, together with the --holdout flag
+  holdout_unlocked: false
+
+momentum:
+  skip_days: 21
+  long_days: 252
+  short_days: 126
+  clip_pct: [0.01, 0.99]
+  weights: {z_12_1: 0.5, z_6_1: 0.5}
+  min_history_days: 252
+  # a lag price is the last close on or before the lag date, no older than this many trading days
+  max_lag_staleness_days: 5
+  # median daily traded value over the trailing 63 days; VERIFY
+  min_liquidity_crore: 5
+
+portfolio:
+  # fixed for Phase 3
+  holdings: 30
+  weighting: equal
+  sector_cap: 0.25
+  buffer_rank: 45
+  rebalance: monthly
+
+diagnostics:
+  newey_west_lags: 3
+  quantiles: [5, 10]
+  decay_horizons: [1, 2, 3, 6, 12]
+  liquidity_terciles: 3
+
+checks:
+  # momentum --check: hand recompute and look-ahead test
+  hand_stock: RELIANCE
+  hand_date: "2016-06-30"
+  lookahead_date: "2018-03-28"
+  # backtest checks: which rebalance (position in the list) and which buy trade to recompute by hand
+  rebalance_index: 60
+  trade_index: 500
+
+# ---------- Phase 3: backtest (pre-registered in Configs/preregistration.md, addendum) ----------
+backtest:
+  capital: 1000000
+  risk_free: 0.065              # VERIFY: annual risk-free rate for Sharpe / Sortino
+  quarterly_months: [3, 6, 9, 12]
+  # cost scenarios: statutory charges on/off, slippage multiple
+  scenarios:
+    zero: {statutory: false, slippage_multiple: 0}
+    base: {statutory: true, slippage_multiple: 1}
+    high: {statutory: true, slippage_multiple: 2}
+  breakeven_multiples: [0, 1, 2, 4, 8, 16]
+
+costs:
+  # all VERIFY: assumed rates for delivery equity on NSE, as fractions of trade value unless stated
+  brokerage: 0.0                # assumption: a zero-brokerage delivery account
+  stt: 0.001                    # securities transaction tax, buy and sell
+  exchange_txn: 0.0000297       # NSE transaction charge, buy and sell
+  sebi_fee: 0.000001            # Rs 10 per crore, buy and sell
+  stamp_duty_buy: 0.00015       # buy side only
+  gst: 0.18                     # on brokerage + exchange charge + SEBI fee
+  dp_charge_per_sell: 15.93     # rupees per stock per sell day, including GST
+  # slippage by 63-day median traded value at the trade date (Rs crore floor -> bps); below 5 crore uses the last tier
+  slippage_tiers: [[25, 5], [10, 10], [5, 20], [0, 20]]
+
+# ---------- Phase 4: walk-forward grid and holdout (pre-registered) ----------
+walkforward:
+  signals: [score, z_12_1, z_6_1]       # blend 50/50 (default), 12-1 only, 6-1 only
+  holdings: [20, 30, 50]
+  buffer_multiple: 1.5                  # keep a holding while rank <= 1.5 N (monthly and quarterly)
+  rebalance: [monthly, quarterly]
+  first_train_months: 60
+  test_months: 12
+  step_months: 12
+  embargo_months: 1
+  scenario: base
+
+# ---------- Phase 5: institutional tests (pre-registered) ----------
+institutional:
+  # IIMA Indian Fama-French and momentum factors (Agarwalla, Jacob and Varma), monthly, survivorship-bias adjusted, in %
+  iima_url: https://faculty.iima.ac.in/iffm/Indian-Fama-French-Momentum/DATA/2025-12_FourFactors_and_Market_Returns_Monthly_SurvivorshipBiasAdjusted.csv
+  iima_folder: Data/raw/iima
+  manual_iima_folder: Data/raw/manual/iima
+  neutral_min_group: 3          # groups with fewer eligible stocks get a neutral score of 0
+  size_groups: 3                # traded-value terciles for the size-neutral score
+  beta_days: 252
+  beta_min_obs: 200
+  prev_return_days: 21
+  capacity_capitals: [1000000, 10000000, 100000000, 1000000000]
+  participation: 0.05           # largest trade as a share of the stock's 63-day median daily traded value
+  beta_roll_months: 12
